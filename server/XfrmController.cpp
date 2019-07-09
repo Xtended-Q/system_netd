@@ -436,7 +436,7 @@ netdutils::Status XfrmController::ipSecSetEncapSocketOwner(const android::base::
     }
 
     int optval;
-    socklen_t optlen = sizeof(optval);
+    socklen_t optlen;
     netdutils::Status status =
         getSyscallInstance().getsockopt(Fd(socket), IPPROTO_UDP, UDP_ENCAP, &optval, &optlen);
     if (status != netdutils::status::ok) {

@@ -79,9 +79,8 @@ private:
         int startService();
         int stopService();
         void run();
-        void deallocateServiceRef(DNSServiceRef* ref);
 
-      private:
+    private:
         int rescan(); // returns the number of elements in the poll
         class Element {
         public:
