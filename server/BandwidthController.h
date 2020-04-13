@@ -57,11 +57,6 @@ public:
     int addNiceApps(const std::vector<std::string>& appStrUid);
     int removeNiceApps(const std::vector<std::string>& appStrUid);
 
-    int addRestrictAppsOnInterface(const std::string& usecase, const std::string& iface,
-                                   const std::vector<std::string>& appStrUid);
-    int removeRestrictAppsOnInterface(const std::string& usecase, const std::string& iface,
-                                      const std::vector<std::string>& appStrUid);
-
     int setGlobalAlert(int64_t bytes);
     int removeGlobalAlert();
     int setGlobalAlertInForwardChain();
@@ -101,16 +96,7 @@ public:
 
     std::string makeDataSaverCommand(IptablesTarget target, bool enable);
 
-    int manipulateRestrictAppsInOut(const std::string& usecase, const std::string& iface,
-                                    const std::vector<std::string>& appStrUids, IptOp appOp);
-
-    int manipulateRestrictApps(const std::vector<std::string>& appStrUids, const std::string& chain,
-                               std::vector<int /*appUid*/>& restrictAppUids, IptOp appOp);
-
     int manipulateSpecialApps(const std::vector<std::string>& appStrUids, const std::string& chain,
-                              IptJumpOp jumpHandling, IptOp appOp);
-
-    int manipulateNonBpfApps(const std::vector<std::string>& appStrUids, const std::string& chain,
                               IptJumpOp jumpHandling, IptOp appOp);
 
     int runIptablesAlertCmd(IptOp op, const std::string& alertName, int64_t bytes);
@@ -154,8 +140,6 @@ public:
 
     std::map<std::string, QuotaInfo> mQuotaIfaces;
     std::set<std::string> mSharedQuotaIfaces;
-
-    std::map<std::string /* interface name*/, std::vector<int /*appUid*/>> mRestrictAppsOnInterface;
 };
 
 #endif
